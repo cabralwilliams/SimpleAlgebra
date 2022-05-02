@@ -1,0 +1,114 @@
+﻿@model SimpleAlgebra.Models.StandardLine;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Linear: Standard Form";
+}
+<div class="d-flex flex-wrap">
+    <div class="col-12 col-md-3">
+        <h2>Linear: Standard Form</h2>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between col-12 col-md-9">
+        <div class="d-flex flex-column col-12 col-md-8">
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <h3>Question 1</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos1A[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos1A[2]
+                    @Model.sLineCos1A[1]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos1A[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos1B[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos1B[2]
+                    @Model.sLineCos1B[1]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos1B[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p>Given the above linear system, find the solution, (<i>x</i>, <i>y</i>).</p>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <h3>Question 2</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos2A[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos2A[1]
+                    @Model.sLineCos2A[2]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos2A[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos2B[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos2B[1]
+                    @Model.sLineCos2B[2]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos2B[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p>@Model.questionSL2</p>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <h3>Question 3</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos3A[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos3A[1]
+                    @Model.sLineCos3A[2]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos3A[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    @Model.sLineCos3B[0]
+                    <i>x</i>&nbsp;
+                    @Model.sLineCos3B[1]
+                    @Model.sLineCos3B[2]
+                    <i>y</i>&nbsp;
+                     = @Model.sLineCos3B[3]
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p>@Model.questionSL3</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-4" id="formDiv">
+            <form class="d-flex flex-column bg-s-light-grey rounded col-12" id="answerForm">
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS1" class="text-s-dark-grey">Question 1</label>
+                    <input type="text" id="studentResponseLS1" name="studentResponseLS1" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS2" class="text-s-dark-grey">Question 2</label>
+                    <input type="number" step="1" id="studentResponseLS2" name="studentResponseLS2" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS3" class="text-s-dark-grey">Question 3</label>
+                    <input type="number" step="1" id="studentResponseLS3" name="studentResponseLS3" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <button class="btn btn-primary" type="submit">Submit Answers!</button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-4 d-none align-items-center" id="resultDiv">
+            <div id="q1">@Model.sLineAnswers1[0]|@Model.sLineAnswers1[1]|@Model.sLineAnswers1[2]|@Model.sLineAnswers1[3]</div>
+            <div id="q2">@Model.sL2solutions[0]</div>
+            <div id="q3">@Model.sL3solutions[0]</div>
+        </div>
+    </div>
+</div>
+<script src="/js/linearStandard.js"></script>
