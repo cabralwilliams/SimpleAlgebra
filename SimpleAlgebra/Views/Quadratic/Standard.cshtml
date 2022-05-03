@@ -1,0 +1,105 @@
+﻿@model SimpleAlgebra.Models.Quadratic;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Quadratic: Standard Form";
+}
+
+<div class="d-flex flex-wrap">
+    <div class="col-12 col-md-3">
+        <h2>Quadratic: Standard Form</h2>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between col-12 col-md-9">
+        <div class="d-flex flex-column col-12 col-md-8">
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center mb-3">
+                    <h3>Question 1</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <i>x</i><sup class="">2</sup>
+                    @if (!Model.qSF1eliminateMiddle)
+                    {
+                        @if(Model.qSF1Coefficients[1] < 0)
+                        {
+                            <span>&nbsp;-&nbsp;</span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;+&nbsp;</span>
+                        }
+                        @if(Math.Abs(Model.qSF1Coefficients[1]) != 1)
+                        {
+                            <span>@Math.Abs(Model.qSF1Coefficients[1])</span>
+                        }
+                        <i>x</i>
+                    }
+                    @if(Model.qSF1Coefficients[2] < 0)
+                    {
+                        <span>&nbsp;-&nbsp;@(-Model.qSF1Coefficients[2])</span>
+                    }
+                    else
+                    {
+                        <span>&nbsp;+&nbsp;@Model.qSF1Coefficients[2]</span>
+                    }
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p>@Model.qSF1question</p>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <h3>Question 2</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p></p>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <h3>Question 3</h3>
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    
+                </div>
+                <div class="col-10 col-md-8 d-flex justify-content-center">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-4" id="formDiv">
+            <form class="d-flex flex-column bg-s-light-grey rounded col-12" id="answerForm">
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS1" class="text-s-dark-grey">Question 1</label>
+                    <input type="text" id="studentResponseLS1" name="studentResponseLS1" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS2" class="text-s-dark-grey">Question 2</label>
+                    <input type="number" step="1" id="studentResponseLS2" name="studentResponseLS2" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <label for="studentResponseLS3" class="text-s-dark-grey">Question 3</label>
+                    <input type="number" step="1" id="studentResponseLS3" name="studentResponseLS3" class="form-control" />
+                </div>
+                <div class="d-flex flex-column form-control bg-s-light-grey col-12 p-3">
+                    <button class="btn btn-primary" type="submit">Submit Answers!</button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-4 d-none align-items-center" id="resultDiv">
+            <div id="q1">@Model.qSF1answers</div>
+            <div id="q2"></div>
+            <div id="q3"></div>
+        </div>
+    </div>
+</div>
+<script src="/js/quadraticStandard.js"></script>

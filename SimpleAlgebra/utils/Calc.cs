@@ -232,5 +232,65 @@ namespace SimpleAlgebra.utils
             }
             return new int[] { reducedCos1[0], reducedCos1[1], coA, coB };
         }
+
+        public static int[] ZeroesToPolyCoefficients(int[] zeroes)
+        {
+            if(zeroes.Length == 0)
+            {
+                return new int[] { 1, 1 };
+            }
+            else if(zeroes.Length == 1)
+            {
+                return new int[] { 1, -zeroes[0] };
+            }
+            //Set the index of the zero array
+            int index = 1;
+            //Set the current state of the coefficients array
+            int[] current = new int[] { 1, -zeroes[0] };
+            //Loop through the zeroes
+            while(index < zeroes.Length)
+            {
+                int[] nextArr = new int[current.Length + 1];
+                //Populate the nextArr with zeroes
+                for(int i = 0; i < nextArr.Length; i++)
+                {
+                    nextArr[i] = 0;
+                }
+                int[] currentZero = new int[] { 1, -zeroes[index] };
+                for(int i = 0; i < current.Length; i++)
+                {
+                    for(int j = 0; j < currentZero.Length; j++)
+                    {
+                        nextArr[i + j] += current[i] * currentZero[j];
+                    }
+                }
+                current = nextArr;
+                index++;
+            }
+            return current;
+        }
+        public static string LinearZeroFactor(int zero)
+        {
+            if(zero == 0)
+            {
+                return "x";
+            }
+            else if(zero < 0)
+            {
+                return $"x+{-zero}";
+            }
+            else
+            {
+                return $"x-{zero}";
+            }
+        }
+        public static string EliminateSpaces(string str)
+        {
+            if(str.Length == 0)
+            {
+                return str;
+            }
+            return str.Replace(" ", "");
+        }
     }
 }
