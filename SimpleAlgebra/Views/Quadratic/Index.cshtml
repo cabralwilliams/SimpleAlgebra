@@ -17,6 +17,9 @@
                 <div class="d-flex flex-wrap justify-content-evenly">
                     <a href="#standardForm"  class='nav-link'>Standard Form</a>
                 </div>
+                <div class="d-flex flex-wrap justify-content-evenly">
+                    <a href="#factoredForm"  class='nav-link'>Factored Form</a>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-column align-items-center">
@@ -53,7 +56,7 @@
                 coordinates of the vertex of the function.
             </p>
         </div>
-        <div class='d-flex flex-column align-items-center mb-3'>
+        <div class='d-flex flex-column align-items-center mb-3 border-bottom border-dark'>
             <div class="d-flex justify-content-between align-items-center col-10">
                 <h5 id='standardForm'>Standard Form</h5>
                 <a href='#top' class='nav-link'>Back to Top</a>
@@ -80,14 +83,77 @@
                         <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
                     }
                     <path d="@Model.DoubleUniqueReal1" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.SingleUniqueReal2" stroke="blue" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.ZeroReal3" stroke="green" stroke-width="0.25" fill="none" opacity="0.95" />
                     <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
                     <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
                 </svg>
             </div>
-            <b>Function Data</b>
-            <div><b class="text-danger">a</b> = @Model.QuadCos1[0], <b class="text-danger">b</b> = @Model.QuadCos1[1], <b class="text-danger">c</b> = @Model.QuadCos1[2]</div>
-            <div>Discriminant: <b class="text-danger">@(Model.QuadCos1[1]*Model.QuadCos1[1] - 4*Model.QuadCos1[0]*Model.QuadCos1[2])</b></div>
-            <div>Roots/Zeroes: <b class="text-danger">@Model.Zero1A</b> and <b class="text-danger">@Model.Zero1B</b></div>
+            <div class="d-flex flex-wrap col-10 col-md-8 justify-content-evenly">
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-danger">Function Data</b>
+                    <div><b class="text-danger">a</b> = @Model.QuadCos1[0], <b class="text-danger">b</b> = @Model.QuadCos1[1], <b class="text-danger">c</b> = @Model.QuadCos1[2]</div>
+                    <div>Discriminant: <b class="text-danger">@(Model.QuadCos1[1]*Model.QuadCos1[1] - 4*Model.QuadCos1[0]*Model.QuadCos1[2])</b></div>
+                    <div>Roots/Zeroes: <b class="text-danger">@Model.Zero1A</b> and <b class="text-danger">@Model.Zero1B</b></div>
+                </div>
+                 <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-primary">Function Data</b>
+                    <div><b class="text-primary">a</b> = @Model.QuadCos2[0], <b class="text-primary">b</b> = @Model.QuadCos2[1], <b class="text-primary">c</b> = @Model.QuadCos2[2]</div>
+                    <div>Discriminant: <b class="text-primary">@(Model.QuadCos2[1]*Model.QuadCos2[1] - 4*Model.QuadCos2[0]*Model.QuadCos2[2])</b></div>
+                    <div>Root/Zero: <b class="text-primary">@Model.Zero2</b></div>
+                </div>
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-success">Function Data</b>
+                    <div><b class="text-success">a</b> = @Model.ACo3, <b class="text-success">b</b> = @Model.BCo3, <b class="text-success">c</b> = @Model.CCo3</div>
+                    <div>Discriminant: <b class="text-success">@(Model.BCo3*Model.BCo3 - 4*Model.ACo3*Model.CCo3)</b></div>
+                    <div>Roots/Zeroes: <b class="text-success">None</b></div>
+                </div>
+            </div>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3 border-bottom border-dark'>
+            <div class="d-flex justify-content-between align-items-center col-10">
+                <h5 id='factoredForm'>Factored Form</h5>
+                <a href='#top' class='nav-link'>Back to Top</a>
+            </div>
+            <p class='col-10 col-md-8'>
+                The factored form of a quadratic function, <i>y</i> = <b class="text-danger">a</b>
+                (<i>x</i> - <b class="text-danger">z<sub>1</sub></b>)(<i>x</i> - <b class="text-danger">z<sub>2</sub></b>), 
+                also provides significant information about the function.  If you understand the form, you can 
+                avoid wasting time by converting it to some other form.
+            </p>
+            <b>Factored Form Properties</b>
+            <div>Axis of Symmetry: <i>x</i> = <sup>(<b class="text-danger">z<sub>1</sub></b> + <b class="text-danger">z<sub>2</sub></b>)</sup>&frasl;<sub>2</sub></div>
+            <div>
+                Vertex: Find <b class="text-danger">h</b> using above, and plug <b class="text-danger">h</b> into 
+                original equation to get <b class="text-danger">k</b>.
+            </div>
+            <div class="d-flex flex-column col-10 col-md-8">
+                <svg  version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox="-18 -18 36 36">
+                    @for(int i = -15; i < 16; i++)
+                    {
+                        <line x1="@i" y1="-15" x2="@i" y2="15" stroke="black" stroke-width="0.15" />
+                        <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
+                    }
+                    <path d="@Model.DoubleUniqueReal4" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.SingleUniqueReal5" stroke="blue" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                    <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                </svg>
+            </div>
+            <div class="d-flex flex-wrap col-10 col-md-8 justify-content-evenly">
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-danger">Function Data</b>
+                    <div><b class="text-danger">a</b> = @Model.QuadCos4[0], <b class="text-danger">z<sub>1</sub></b> = @Model.Zero4A, <b class="text-danger">z<sub>2</sub></b> = @Model.Zero4B</div>
+                    <div>Axis of Symmetry: <i>x</i> = <b class="text-danger">@Model.AOS4</b></div>
+                    <div>Vertex: (<b class="text-danger">@Model.AOS4</b>, <b class="text-danger">@Model.VY4</b>)</div>
+                </div>
+                 <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-primary">Function Data</b>
+                    <div><b class="text-danger">a</b> = @Model.QuadCos5[0], <b class="text-danger">z<sub>1</sub></b> = @Model.Zero5, <b class="text-danger">z<sub>2</sub></b> = @Model.Zero5</div>
+                    <div>Axis of Symmetry: <i>x</i> = <b class="text-danger">@Model.Zero5</b></div>
+                    <div>Vertex: (<b class="text-danger">@Model.Zero5</b>, <b class="text-danger">0</b>)</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
