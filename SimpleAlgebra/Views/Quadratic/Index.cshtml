@@ -1,4 +1,5 @@
-﻿@*
+﻿@model SimpleAlgebra.Models.QuadraticDemo;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -13,7 +14,9 @@
         <div class="d-flex flex-column align-items-center" id="top">
             <h4>Section Links</h4>
             <div class="d-flex justify-content-evenly">
-
+                <div class="d-flex flex-wrap justify-content-evenly">
+                    <a href="#standardForm"  class='nav-link'>Standard Form</a>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-column align-items-center">
@@ -37,7 +40,7 @@
             <div><b>Factored</b>: <i>y</i> = <b class='text-danger'>a</b>(<i>x</i> - <b class='text-danger'>z<sub>1</sub></b>)(<i>x</i> - <b class='text-danger'>z<sub>2</sub></b>)</div>
             <div><b>Vertex</b>: <i>y</i> = <b class='text-danger'>a</b>(<i>x</i> - <b class='text-danger'>h</b>)<sup>2</sup> + <b class='text-danger'>k</b></div>
         </div>
-        <div class='d-flex flex-column align-items-center mb-3'>
+        <div class='d-flex flex-column align-items-center mb-3 border-bottom border-dark'>
             <p class='col-10 col-md-8'>
                 Each equation above contains an instance of <b class='text-danger'>a</b> - the leading 
                 coefficient of the function.  This coefficient determines how quickly the function rises or 
@@ -49,6 +52,42 @@
                 the Vertex case, (<b class='text-danger'>h</b>, <b class='text-danger'>k</b>) are the 
                 coordinates of the vertex of the function.
             </p>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <div class="d-flex justify-content-between align-items-center col-10">
+                <h5 id='standardForm'>Standard Form</h5>
+                <a href='#top' class='nav-link'>Back to Top</a>
+            </div>
+            <p class='col-10 col-md-8'>
+                The standard form of a quadratic function, <i>y</i> = <b class="text-danger">a</b>
+                <i>x</i><sup>2</sup> + <b class="text-danger">b</b><i>x</i> + <b class="text-danger">c</b>, 
+                provides significant information about the function - it is wise to remember the properties 
+                arise from the form.
+            </p>
+            <b>Standard Form Properties</b>
+            <div>Axis of Symmetry: <i>x</i> = -<sup><b class="text-danger">b</b></sup>&frasl;<sub>2<b class="text-danger">a</b></sub></div>
+            <div>Discriminat: <b class="text-danger">b</b><sup>2</sup> - 4<b class="text-danger">ac</b></div>
+            <div><b class="text-danger">b</b><sup>2</sup> - 4<b class="text-danger">ac</b> > 0 &rarr; 2 unique real roots</div>
+            <div><b class="text-danger">b</b><sup>2</sup> - 4<b class="text-danger">ac</b> = 0 &rarr; 1 unique real (double) root</div>
+            <div><b class="text-danger">b</b><sup>2</sup> - 4<b class="text-danger">ac</b> < 0 &rarr; 2 complex (conjugate) roots</div>
+            <div>Sum of Roots: <i>x</i> = -<sup><b class="text-danger">b</b></sup>&frasl;<sub><b class="text-danger">a</b></sub></div>
+            <div>If <b class="text-danger">a</b>&sdot;<b class="text-danger">c</b> < 0, there are 2 unique real roots</div>
+            <div class="d-flex flex-column col-10 col-md-8">
+                <svg  version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox="-18 -18 36 36">
+                    @for(int i = -15; i < 16; i++)
+                    {
+                        <line x1="@i" y1="-15" x2="@i" y2="15" stroke="black" stroke-width="0.15" />
+                        <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
+                    }
+                    <path d="@Model.DoubleUniqueReal1" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                    <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                </svg>
+            </div>
+            <b>Function Data</b>
+            <div><b class="text-danger">a</b> = @Model.QuadCos1[0], <b class="text-danger">b</b> = @Model.QuadCos1[1], <b class="text-danger">c</b> = @Model.QuadCos1[2]</div>
+            <div>Discriminant: <b class="text-danger">@(Model.QuadCos1[1]*Model.QuadCos1[1] - 4*Model.QuadCos1[0]*Model.QuadCos1[2])</b></div>
+            <div>Roots/Zeroes: <b class="text-danger">@Model.Zero1A</b> and <b class="text-danger">@Model.Zero1B</b></div>
         </div>
     </div>
 </div>

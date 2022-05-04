@@ -17,7 +17,7 @@
                     <h3>Question 1</h3>
                 </div>
                 <div class="col-10 col-md-8 d-flex justify-content-center">
-                    <i>x</i><sup class="">2</sup>
+                    <span><i>x</i><sup class="">2</sup>
                     @if (!Model.qSF1eliminateMiddle)
                     {
                         @if(Model.qSF1Coefficients[1] < 0)
@@ -42,6 +42,7 @@
                     {
                         <span>&nbsp;+&nbsp;@Model.qSF1Coefficients[2]</span>
                     }
+                    </span>
                 </div>
                 <div class="col-10 col-md-8 d-flex justify-content-center">
                     <p>@Model.qSF1question</p>

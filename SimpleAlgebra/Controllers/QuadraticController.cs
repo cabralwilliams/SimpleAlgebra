@@ -6,9 +6,10 @@ namespace SimpleAlgebra.Controllers
     public class QuadraticController : Controller
     {
         public Quadratic quadratic1 = new Quadratic();
+        public QuadraticDemo quadraticDemo = new QuadraticDemo();
         public IActionResult Index()
         {
-            return View();
+            return View(quadraticDemo);
         }
 
         public IActionResult Standard()
