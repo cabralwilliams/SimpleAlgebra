@@ -43,6 +43,46 @@ namespace SimpleAlgebra.Models
         public double[] DoubleQuadCos5; //The double versions of the coefficients
         public string SingleUniqueReal5; //Path string for 5th function
 
+        //Vertex Instances
+        //On Axis
+        public int VACo0;
+        public int VHCo0;
+        public string VPath0;
+        public int[] VInt0;
+        public double[] VDouble0;
+
+        //First Quadrant
+        public int VACo1;
+        public int VHCo1;
+        public int VKCo1;
+        public string VPath1;
+        public int[] VInt1;
+        public double[] VDouble1;
+
+        //Second Quadrant
+        public int VACo2;
+        public int VHCo2;
+        public int VKCo2;
+        public string VPath2;
+        public int[] VInt2;
+        public double[] VDouble2;
+
+        //Third Quadrant
+        public int VACo3;
+        public int VHCo3;
+        public int VKCo3;
+        public string VPath3;
+        public int[] VInt3;
+        public double[] VDouble3;
+
+        //Fourth Quadrant
+        public int VACo4;
+        public int VHCo4;
+        public int VKCo4;
+        public string VPath4;
+        public int[] VInt4;
+        public double[] VDouble4;
+
         public QuadraticDemo()
         {
             //2 Unique real roots
@@ -141,6 +181,69 @@ namespace SimpleAlgebra.Models
             }
             DoubleQuadCos5 = new double[] { QuadCos5[0], QuadCos5[1], QuadCos5[2] };
             SingleUniqueReal5 = SVG.SVGPolyPath(-15, 15, 0.1, DoubleQuadCos5);
+
+            //Vertex 0
+            VACo0 = Calc.ReselectIfZero(2);
+            VHCo0 = Calc.ReselectIfZero(8);
+            VInt0 = Calc.ZeroesToPolyCoefficients(new int[] { VHCo0, VHCo0 });
+            for(int i = 0; i < 3; i++)
+            {
+                VInt0[i] *= VACo0;
+            }
+            VDouble0 = new double[] { VInt0[0], VInt0[1], VInt0[2] };
+            VPath0 = SVG.SVGPolyPath(-15,15,0.1, VDouble0);
+
+            //Vertex 1
+            VACo1 = Calc.ReselectIfZero(2);
+            VHCo1 = Calc.RandomPositiveInt();
+            VKCo1 = Calc.RandomPositiveInt(1, 8);
+            VInt1 = Calc.ZeroesToPolyCoefficients(new int[] { VHCo1, VHCo1 });
+            for(int i = 0; i < 3; i++)
+            {
+                VInt1[i] *= VACo1;
+            }
+            VInt1[2] += VKCo1;
+            VDouble1 = new double[] { VInt1[0], VInt1[1], VInt1[2] };
+            VPath1 = SVG.SVGPolyPath(-15, 15, 0.1, VDouble1);
+
+            //Vertex 2
+            VACo2 = Calc.ReselectIfZero(2);
+            VHCo2 = -Calc.RandomPositiveInt();
+            VKCo2 = Calc.RandomPositiveInt(1, 8);
+            VInt2 = Calc.ZeroesToPolyCoefficients(new int[] { VHCo2, VHCo2 });
+            for (int i = 0; i < 3; i++)
+            {
+                VInt2[i] *= VACo2;
+            }
+            VInt2[2] += VKCo2;
+            VDouble2 = new double[] { VInt2[0], VInt2[1], VInt2[2] };
+            VPath2 = SVG.SVGPolyPath(-15, 15, 0.1, VDouble2);
+
+            //Vertex 3
+            VACo3 = Calc.ReselectIfZero(2);
+            VHCo3 = -Calc.RandomPositiveInt();
+            VKCo3 = -Calc.RandomPositiveInt(1, 8);
+            VInt3 = Calc.ZeroesToPolyCoefficients(new int[] { VHCo3, VHCo3 });
+            for (int i = 0; i < 3; i++)
+            {
+                VInt3[i] *= VACo3;
+            }
+            VInt3[2] += VKCo3;
+            VDouble3 = new double[] { VInt3[0], VInt3[1], VInt3[2] };
+            VPath3 = SVG.SVGPolyPath(-15, 15, 0.1, VDouble3);
+
+            //Vertex 4
+            VACo4 = Calc.ReselectIfZero(2);
+            VHCo4 = Calc.RandomPositiveInt();
+            VKCo4 = -Calc.RandomPositiveInt(1, 8);
+            VInt4 = Calc.ZeroesToPolyCoefficients(new int[] { VHCo4, VHCo4 });
+            for (int i = 0; i < 3; i++)
+            {
+                VInt4[i] *= VACo4;
+            }
+            VInt4[2] += VKCo4;
+            VDouble4 = new double[] { VInt4[0], VInt4[1], VInt4[2] };
+            VPath4 = SVG.SVGPolyPath(-15, 15, 0.1, VDouble4);
         }
     }
 }

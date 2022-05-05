@@ -20,12 +20,19 @@
                 <div class="d-flex flex-wrap justify-content-evenly">
                     <a href="#factoredForm"  class='nav-link'>Factored Form</a>
                 </div>
+                <div class="d-flex flex-wrap justify-content-evenly">
+                    <a href="#vertexForm"  class='nav-link'>Vertex Form</a>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-column align-items-center">
             <h4>Exercise Links</h4>
             <div class="d-flex flex-wrap justify-content-evenly">
                 <a href="/Quadratic/Standard"  class='nav-link'>Standard Exercises</a>
+                <a href="/Quadratic/Factored"  class='nav-link'>Factored Exercises</a>
+            </div>
+            <div class="d-flex flex-wrap justify-content-evenly">
+               
             </div>
         </div>
         <div class='d-flex flex-column align-items-center mb-3'>
@@ -149,9 +156,114 @@
                 </div>
                  <div class="d-flex flex-column col-6 align-items-center">
                     <b class="text-primary">Function Data</b>
-                    <div><b class="text-danger">a</b> = @Model.QuadCos5[0], <b class="text-danger">z<sub>1</sub></b> = @Model.Zero5, <b class="text-danger">z<sub>2</sub></b> = @Model.Zero5</div>
-                    <div>Axis of Symmetry: <i>x</i> = <b class="text-danger">@Model.Zero5</b></div>
-                    <div>Vertex: (<b class="text-danger">@Model.Zero5</b>, <b class="text-danger">0</b>)</div>
+                    <div><b class="text-primary">a</b> = @Model.QuadCos5[0], <b class="text-primary">z<sub>1</sub></b> = @Model.Zero5, <b class="text-primary">z<sub>2</sub></b> = @Model.Zero5</div>
+                    <div>Axis of Symmetry: <i>x</i> = <b class="text-primary">@Model.Zero5</b></div>
+                    <div>Vertex: (<b class="text-primary">@Model.Zero5</b>, <b class="text-primary">0</b>)</div>
+                </div>
+            </div>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3 border-bottom border-dark'>
+            <div class="d-flex justify-content-between align-items-center col-10">
+                <h5 id='vertexForm'>Vertex Form</h5>
+                <a href='#top' class='nav-link'>Back to Top</a>
+            </div>
+            <p class='col-10 col-md-8'>
+                The vertex form of a quadratic function, <i>y</i> = <b class="text-danger">a</b>
+                (<i>x</i> - <b class="text-danger">h</b>)<sup>2</sup> + <b class="text-danger">k</b>, 
+                tells you exactly where the vertex of the function lies and also tells you the nature 
+                of the roots/zeroes of the function.
+            </p>
+            <b>Vertex Form Properties</b>
+            <div>Axis of Symmetry: <i>x</i> = <b class="text-danger">h</b></div>
+            <div>Vertex: (<b class="text-danger">h</b>, <b class="text-danger">k</b>)</div>
+            <div><b class="text-danger">k</b> = 0 &rarr; 1 real root</div>
+            <div><b class="text-danger">a</b>&sdot;<b class="text-danger">k</b> < 0 &rarr; 2 real roots</div>
+            <div><b class="text-danger">a</b>&sdot;<b class="text-danger">k</b> > 0 &rarr; 2 complex roots</div>
+            <div>(<b class="text-danger">h</b>, <b class="text-danger">k</b>) = (+, +) &rarr; Vertex in Quadrant I</div>
+            <div>(<b class="text-danger">h</b>, <b class="text-danger">k</b>) = (-, +) &rarr; Vertex in Quadrant II</div>
+            <div>(<b class="text-danger">h</b>, <b class="text-danger">k</b>) = (-, -) &rarr; Vertex in Quadrant III</div>
+            <div>(<b class="text-danger">h</b>, <b class="text-danger">k</b>) = (+, -) &rarr; Vertex in Quadrant IV</div>
+            <div class="d-flex flex-column col-10 col-md-8">
+                <svg  version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox="-18 -18 36 36">
+                    @for(int i = -15; i < 16; i++)
+                    {
+                        <line x1="@i" y1="-15" x2="@i" y2="15" stroke="black" stroke-width="0.15" />
+                        <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
+                    }
+                    <path d="@Model.VPath0" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.VPath1" stroke="blue" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.VPath2" stroke="green" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.VPath3" stroke="orange" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.VPath4" stroke="grey" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                    <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                </svg>
+            </div>
+            <div class="d-flex flex-wrap col-10 col-md-8 justify-content-evenly">
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-danger">Function Data</b>
+                    <div><b class="text-danger">a</b> = @Model.VACo0, <b class="text-danger">h</b> = @Model.VHCo0, <b class="text-danger">k</b> = 0</div>
+                    <div># of Real Roots: 1</div>
+                </div>
+                 <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-primary">Function Data</b>
+                    <div><b class="text-primary">a</b> = @Model.VACo1, <b class="text-primary">h</b> = @Model.VHCo1, <b class="text-primary">k</b> = @Model.VKCo1</div>
+                    <div>Quadrant: I</div>
+                    <div>
+                        # of Real Roots: 
+                        @if(Model.VACo1*Model.VKCo1 < 0) {
+                            <span>2</span>
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-success">Function Data</b>
+                    <div><b class="text-success">a</b> = @Model.VACo2, <b class="text-success">h</b> = @Model.VHCo2, <b class="text-success">k</b> = @Model.VKCo2</div>
+                    <div>Quadrant: II</div>
+                    <div>
+                        # of Real Roots: 
+                        @if(Model.VACo2*Model.VKCo2 < 0) {
+                            <span>2</span>
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-warning">Function Data</b>
+                    <div><b class="text-warning">a</b> = @Model.VACo3, <b class="text-warning">h</b> = @Model.VHCo3, <b class="text-warning">k</b> = @Model.VKCo3</div>
+                    <div>Quadrant: III</div>
+                    <div>
+                        # of Real Roots: 
+                        @if(Model.VACo3*Model.VKCo3 < 0) {
+                            <span>2</span>
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-6 align-items-center">
+                    <b class="text-secondary">Function Data</b>
+                    <div><b class="text-secondary">a</b> = @Model.VACo4, <b class="text-secondary">h</b> = @Model.VHCo4, <b class="text-secondary">k</b> = @Model.VKCo4</div>
+                    <div>Quadrant: IV</div>
+                    <div>
+                        # of Real Roots: 
+                        @if(Model.VACo4*Model.VKCo4 < 0) {
+                            <span>2</span>
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

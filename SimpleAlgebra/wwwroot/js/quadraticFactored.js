@@ -31,20 +31,20 @@ function checkAnswers(event) {
     let correctCount = 0;
     //console.log("Request received!");
     //Retrieve the answers from the hidden div
-    const q1Answers = document.querySelector("#q1").textContent.split(",");
-    const q1Response = stripSpaces(studentResponseLS1.value);
+    const q1Answer = document.querySelector("#q1").textContent;
+    const q1Response = studentResponseLS1.value;
     //console.log(q1Answers);
     //console.log(checkMultiple(q1Answers, q1Response));
     const q2Answer = parseInt(document.querySelector("#q2").textContent);
     const q2Response = parseInt(studentResponseLS2.value);
     //console.log(q2Answer);
-    const q3Answer = parseInt(document.querySelector("#q3").textContent);
-    const q3Response = parseInt(studentResponseLS3.value);
+    const q3Answers = document.querySelector("#q3").textContent.split("|");
+    const q3Response = stripSpaces(studentResponseLS3.value);
     resultDiv.innerHTML = "";
 
-    const q1Div = createResultDiv(q1Response, q1Answers, 0, 1);
+    const q1Div = createResultDiv(q1Response, [q1Answer], 2, 1);
     const q2Div = createResultDiv(q2Response, [q2Answer], 1, 2);
-    const q3Div = createResultDiv(q3Response, [q3Answer], 1, 3);
+    const q3Div = createResultDiv(q3Response, q3Answers, 0, 3);
     resultDiv.append(q1Div, q2Div, q3Div);
     const resetBtn = resetPage();
     resultDiv.append(resetBtn);
@@ -81,6 +81,9 @@ function createResultDiv(response, answerList, qType, qNumber) {
             break;
         case 1:
             wasCorrect = checkOne(answerList, response, true);
+            break;
+        case 2:
+            wasCorrect = checkOne(answerList, response, false);
             break;
         default:
             wasCorrect = checkMultiple(answerList, response);

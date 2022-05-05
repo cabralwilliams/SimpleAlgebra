@@ -16,5 +16,10 @@ namespace SimpleAlgebra.Controllers
         {
             return View(quadratic1);
         }
+
+        public IActionResult Factored()
+        {
+            return View(quadratic1);
+        }
     }
 }

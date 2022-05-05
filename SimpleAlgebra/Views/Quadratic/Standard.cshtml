@@ -105,13 +105,44 @@
                     <h3>Question 3</h3>
                 </div>
                 <div class="col-10 col-md-8 d-flex justify-content-center">
-                    
+                    <span><i>y</i> =&nbsp;</span>
+                    <span>
+                        @if(@Model.qSF3A == -1)
+                        {
+                            <span>-</span>
+                        }
+                        else if(@Model.qSF3A != 1)
+                        {
+                            <span>@Model.qSF3A</span>
+                        }
+                        <i>x</i><sup class="">2</sup>
+                        
+                        @if(Model.qSF3B < 0)
+                        {
+                            <span>&nbsp;-&nbsp;</span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;+&nbsp;</span>
+                        }
+                        @if(Math.Abs(Model.qSF3B) != 1)
+                        {
+                            <span>@Math.Abs(Model.qSF3B)</span>
+                        }
+                        <i>x</i>
+                        
+                        @if(Model.qSF3C < 0)
+                        {
+                            <span>&nbsp;-&nbsp;@(-Model.qSF3C)</span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;+&nbsp;@Model.qSF3C</span>
+                        }
+                    </span>
                 </div>
                 <div class="col-10 col-md-8 d-flex justify-content-center">
-                    
-                </div>
-                <div class="col-10 col-md-8 d-flex justify-content-center">
-                    <p></p>
+                    <p>How many unique real roots/zeroes does the above function have?</p>
                 </div>
             </div>
         </div>
@@ -137,7 +168,7 @@
         <div class="d-flex flex-column col-12 col-md-4 d-none align-items-center" id="resultDiv">
             <div id="q1">@Model.qSF1answers</div>
             <div id="q2">@Model.qSF2answer</div>
-            <div id="q3"></div>
+            <div id="q3">@Model.qSF3answer</div>
         </div>
     </div>
 </div>

@@ -292,5 +292,11 @@ namespace SimpleAlgebra.utils
             }
             return str.Replace(" ", "");
         }
+
+        public static int RandomPositiveInt(int lower = 1, int upper = 12)
+        {
+            Random rand = new Random();
+            return rand.Next(lower, upper + 1);
+        }
     }
 }
