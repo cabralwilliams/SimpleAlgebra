@@ -33,6 +33,19 @@ namespace SimpleAlgebra.Models
         public string questionSL3; //Question string
         public string[] sLineCos3A; //Coefficient array for first line
         public string[] sLineCos3B; //Coefficient array for second line
+
+        //Fields for fourth question type - linear combination
+        public int[] sLCos4A; //Coefficients of the first line
+        public int[] sLCos4B; //Coefficients of the second line
+        public int mult4A; //First line mulitple
+        public int mult4B; //Second line multiple
+        public int[] referencePtSL4; //Intersection point
+        public int[] combined4; //Holds the combined coefficients A, B
+        public int sL4answer; //Answer to the question
+        public string[] sLineCos4A; //String representation of the first line coefficients
+        public string[] sLineCos4B; //String representation of the second line coefficients
+        public string[] sLineCos4C; //Holds the coefficients of the expression value sought
+
         public StandardLine()
         {
             Random rand = new Random();
@@ -121,6 +134,41 @@ namespace SimpleAlgebra.Models
                 questionSL3 = $"If the two lines above {sL3Insert}, what is the value of B?";
             }
             sL3solutions = new int[] { sLCos3[misslingSelectorSL3] };
+
+            //Fourth standard question
+            sLCos4A = new int[] { Calc.ReselectIfZero(12), Calc.ReselectIfZero(12) };
+            sLCos4B = new int[] { Calc.ReselectIfZero(12), Calc.ReselectIfZero(12) };
+            while(Calc.AreParallel(sLCos4A, sLCos4B))
+            {
+                sLCos4B = new int[] { Calc.ReselectIfZero(12), Calc.ReselectIfZero(12) };
+            }
+            //Reduce lines if possible
+            sLCos4A = Calc.ReducedArray(sLCos4A);
+            sLCos4B = Calc.ReducedArray(sLCos4B);
+            referencePtSL4 = new int[] { Calc.ReselectIfZero(12), Calc.ReselectIfZero(12) };
+            mult4A = Calc.ReselectIfZero(3);
+            mult4B = Calc.ReselectIfZero(3);
+            //Don't allow combined A or combined B to go to 0
+            while(mult4A*sLCos4A[0] + mult4B*sLCos4B[0] == 0 || mult4A * sLCos4A[1] + mult4B * sLCos4B[1] == 0)
+            {
+                mult4A = Calc.ReselectIfZero(3);
+                mult4B = Calc.ReselectIfZero(3);
+            }
+            //Computed C values for the lines
+            int sL4C1 = sLCos4A[0] * referencePtSL4[0] + sLCos4A[1] * referencePtSL4[1];
+            int sL4C2 = sLCos4B[0] * referencePtSL4[0] + sLCos4B[1] * referencePtSL4[1];
+            combined4 = new int[]
+            {
+                mult4A * sLCos4A[0] + mult4B * sLCos4B[0],
+                mult4A * sLCos4A[1] + mult4B * sLCos4B[1]
+            };
+            combined4 = Calc.ReducedArray(combined4);
+            sL4answer = combined4[0]*referencePtSL4[0] + combined4[1]*referencePtSL4[1];
+            sLCos4A = new int[] { sLCos4A[0], sLCos4A[1], sL4C1 };
+            sLCos4B = new int[] { sLCos4B[0], sLCos4B[1], sL4C2 };
+            sLineCos4A = Calc.StandardCoefficients(sLCos4A, -1);
+            sLineCos4B = Calc.StandardCoefficients(sLCos4B, -1);
+            sLineCos4C = Calc.StandardAandB(combined4);
         }
 
         public void CheckSL1(string studentResponseLS1)

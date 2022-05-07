@@ -21,7 +21,7 @@ const resetPage = () => {
     const resetBtn = document.createElement("a");
     resetBtn.className = "btn btn-primary";
     resetBtn.textContent = "Reset";
-    resetBtn.href = "/Quadratic/Standard";
+    resetBtn.href = "/Quadratic/Factored";
     outputDiv.appendChild(resetBtn);
     return outputDiv;
 }

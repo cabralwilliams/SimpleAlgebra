@@ -5,6 +5,7 @@ const resultDiv = document.querySelector("#resultDiv"); //Div holding the result
 const studentResponseLS1 = document.querySelector("#studentResponseLS1");
 const studentResponseLS2 = document.querySelector("#studentResponseLS2");
 const studentResponseLS3 = document.querySelector("#studentResponseLS3");
+const studentResponseLS4 = document.querySelector("#studentResponseLS4");
 
 const resetPage = () => {
     const outputDiv = document.createElement("div");
@@ -31,12 +32,16 @@ function checkAnswers(event) {
     //console.log(q2Answer);
     const q3Answer = parseInt(document.querySelector("#q3").textContent);
     const q3Response = parseInt(studentResponseLS3.value);
+
+    const q4Answer = parseInt(document.querySelector("#q4").textContent);
+    const q4Response = parseInt(studentResponseLS4.value);
     resultDiv.innerHTML = "";
 
     const q1Div = createResultDiv(q1Response, q1Answers, 0, 1);
     const q2Div = createResultDiv(q2Response, [q2Answer], 1, 2);
     const q3Div = createResultDiv(q3Response, [q3Answer], 1, 3);
-    resultDiv.append(q1Div, q2Div, q3Div);
+    const q4Div = createResultDiv(q4Response, [q4Answer], 1, 4);
+    resultDiv.append(q1Div, q2Div, q3Div, q4Div);
     const resetBtn = resetPage();
     resultDiv.append(resetBtn);
     resultDiv.classList.toggle("d-none");

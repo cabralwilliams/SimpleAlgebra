@@ -205,6 +205,46 @@ namespace SimpleAlgebra.utils
             return new string[] { coA, sign, coB, coC };
         }
 
+        public static string[] StandardAandB(int[] coefficients)
+        {
+            string coA, coB, sign;
+            if (coefficients[0] == 1)
+            {
+                coA = "";
+            }
+            else if (coefficients[0] == -1)
+            {
+                coA = "-";
+            }
+            else
+            {
+                coA = $"{coefficients[0]}";
+            }
+
+            if (coefficients[1] == 1)
+            {
+                coB = "";
+                sign = " + ";
+            }
+            else if (coefficients[1] == -1)
+            {
+                coB = "";
+                sign = " - ";
+            }
+            else if (coefficients[1] < 0)
+            {
+                coB = $"{-coefficients[1]}";
+                sign = " - ";
+            }
+            else
+            {
+                coB = $"{coefficients[1]}";
+                sign = " + ";
+            }
+
+            return new string[] { coA, sign, coB };
+        }
+
         public static int[] PerpendicularCoefficients(int limit, int multLimit = 5)
         {
             //Returns coefficients A,B for perpendicular lines based on input limits
@@ -297,6 +337,38 @@ namespace SimpleAlgebra.utils
         {
             Random rand = new Random();
             return rand.Next(lower, upper + 1);
+        }
+
+        public static bool AreParallel(int[] line1, int[] line2)
+        {
+            if(line1.Length < 2 || line2.Length < 2)
+            {
+                throw new ArgumentException();
+            }
+            if(line1[0]*line2[1] == line1[1] * line2[0])
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static string[] SignsAndZeroes(int[] polyZeroes)
+        {
+            string[] output = new string[polyZeroes.Length*2];
+            for(int i = 0; i < polyZeroes.Length; i++)
+            {
+                if(polyZeroes[i] < 0)
+                {
+                    output[2*i] = "+";
+                    output[2*i + 1] = $"{-polyZeroes[i]}";
+                }
+                else
+                {
+                    output[2 * i] = "-";
+                    output[2 * i + 1] = $"{polyZeroes[i]}";
+                }
+            }
+            return output;
         }
     }
 }

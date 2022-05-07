@@ -1,0 +1,269 @@
+﻿@model SimpleAlgebra.Models.PolynomialDemo;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Polynomials";
+}
+
+<div class="d-flex flex-wrap">
+    <div class="col-12 col-md-3">
+        <h2>Polynomials</h2>
+    </div>
+    <div class="col-12 col-md-9 d-flex flex-column">
+        <div class="d-flex flex-column align-items-center" id="top">
+            <h4>Section Links</h4>
+            <div class="d-flex justify-content-evenly">
+                <a href="#properties"  class='nav-link'>Properties</a>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <h4>Exercise Links</h4>
+            <div class="d-flex flex-wrap justify-content-evenly">
+                
+            </div>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <p class='col-10 col-md-8'>
+                Polynomial functions are generally those functions that contain only non-negative 
+                integer powers of the variable <i>x</i>.  Polynomials can appear in factored form, 
+                in which the function is written as a product of non-factorable smaller polynomials, 
+                or they can be left in unfactored forms.
+            </p>
+            <p class='col-10 col-md-8'>
+                The <b class="text-danger">degree</b> of a polynomial is the highest power of <i>x</i> that
+                appears in the function.  Functions that are of odd degree, those having highest power 
+                1, 3, 5, ..., will have opposing <b class="text-danger">end behavior</b>: as 
+                <i>x</i> &rarr; &plusmn;&infin;, in one direction, <i>y</i> &rarr; +&infin;, and in the 
+                other direction, <i>y</i> &rarr; -&infin;.  (Linear functions with a non-zero slope are 
+                of odd degree, for example.)  Functions that are of even degree, those having highest 
+                power 2, 4, 6, ..., will have matching <b class="text-danger">end behavior</b>: as 
+                <i>x</i> &rarr; &plusmn;&infin;, either <i>y</i> &rarr; +&infin; in both directions, or 
+                <i>y</i> &rarr; -&infin; in both directions.
+            </p>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <h5>Examples</h5>
+            <div>
+                <b class="text-danger">Cubic (3<sup>rd</sup> degree)</b>: <i>y</i> =&nbsp;
+                @if(Model.Cubic1a == -1)
+                {
+                    <span>-</span>
+                }
+                <i>x</i><sup>3</sup>
+                @if(Model.Cubic1Coefficients[1] < 0)
+                {
+                    <span>&nbsp;-&nbsp;</span>
+                    if(Model.Cubic1Coefficients[1] != -1)
+                    {
+                        <span>@Math.Abs(Model.Cubic1Coefficients[1])</span>
+                    }
+                    <i>x</i><sup>2</sup>
+                }
+                else if(Model.Cubic1Coefficients[1] > 0)
+                {
+                    <span>&nbsp;+&nbsp;</span>
+                    if(Model.Cubic1Coefficients[1] != 1)
+                    {
+                        <span>@Model.Cubic1Coefficients[1]</span>
+                    }
+                    <i>x</i><sup>2</sup>
+                }
+                @if(Model.Cubic1Coefficients[2] < 0)
+                {
+                    <span>&nbsp;-&nbsp;</span>
+                    if(Model.Cubic1Coefficients[2] != -1)
+                    {
+                        <span>@Math.Abs(Model.Cubic1Coefficients[2])</span>
+                    }
+                    <i>x</i>
+                }
+                else if(Model.Cubic1Coefficients[2] > 0)
+                {
+                    <span>&nbsp;+&nbsp;</span>
+                    if(Model.Cubic1Coefficients[2] != 1)
+                    {
+                        <span>@Model.Cubic1Coefficients[2]</span>
+                    }
+                    <i>x</i>
+                }
+                @if(Model.Cubic1Coefficients[3] < 0)
+                {
+                    <span>&nbsp;-&nbsp;@Math.Abs(Model.Cubic1Coefficients[3])</span>
+                }
+                else if(Model.Cubic1Coefficients[3] > 0)
+                {
+                    <span>&nbsp;+&nbsp;@Model.Cubic1Coefficients[3]</span>
+                }
+            </div>
+            <div>
+                <b class="text-danger">Cubic (Factored)</b>: <i>y</i> =&nbsp;
+                @if(Model.Cubic1a == -1)
+                {
+                    <span>-</span>
+                }
+                @for(int i = 0; i < Model.Cubic1SignsAndZeroes.Length; i += 2)
+                {
+                    <span>(<i>x</i>&nbsp;@Model.Cubic1SignsAndZeroes[i]&nbsp;@Model.Cubic1SignsAndZeroes[i + 1])</span>
+                }
+            </div>
+            <div>
+                <b class="text-primary">Quartic (4<sup>th</sup> degree)</b>: <i>y</i> =&nbsp;
+                @if(Model.Quartic2a == -1)
+                {
+                    <span>-</span>
+                }
+                <i>x</i><sup>4</sup>
+                @if(Model.Quartic2Coefficients[1] < 0)
+                {
+                    <span>&nbsp;-&nbsp;</span>
+                    if(Model.Quartic2Coefficients[1] != -1)
+                    {
+                        <span>@Math.Abs(Model.Quartic2Coefficients[1])</span>
+                    }
+                    <i>x</i><sup>3</sup>
+                }
+                else if(Model.Quartic2Coefficients[1] > 0)
+                {
+                    <span>&nbsp;+&nbsp;</span>
+                    if(Model.Quartic2Coefficients[1] != 1)
+                    {
+                        <span>@Model.Quartic2Coefficients[1]</span>
+                    }
+                    <i>x</i><sup>3</sup>
+                }
+                @if(Model.Quartic2Coefficients[2] < 0)
+                {
+                    <span>&nbsp;-&nbsp;</span>
+                    if(Model.Quartic2Coefficients[2] != -1)
+                    {
+                        <span>@Math.Abs(Model.Quartic2Coefficients[2])</span>
+                    }
+                    <i>x</i><sup>2</sup>
+                }
+                else if(Model.Quartic2Coefficients[2] > 0)
+                {
+                    <span>&nbsp;+&nbsp;</span>
+                    if(Model.Quartic2Coefficients[2] != 1)
+                    {
+                        <span>@Model.Quartic2Coefficients[2]</span>
+                    }
+                    <i>x</i><sup>2</sup>
+                }
+                @if(Model.Quartic2Coefficients[3] < 0)
+                {
+                    <span>&nbsp;-&nbsp;</span>
+                    if(Model.Quartic2Coefficients[3] != -1)
+                    {
+                        <span>@Math.Abs(Model.Quartic2Coefficients[3])</span>
+                    }
+                    <i>x</i>
+                }
+                else if(Model.Quartic2Coefficients[3] > 0)
+                {
+                    <span>&nbsp;+&nbsp;</span>
+                    if(Model.Quartic2Coefficients[3] != 1)
+                    {
+                        <span>@Model.Quartic2Coefficients[3]</span>
+                    }
+                    <i>x</i>
+                }
+                @if(Model.Quartic2Coefficients[4] < 0)
+                {
+                    <span>&nbsp;-&nbsp;@Math.Abs(Model.Quartic2Coefficients[4])</span>
+                }
+                else if(Model.Quartic2Coefficients[4] > 0)
+                {
+                    <span>&nbsp;+&nbsp;@Model.Quartic2Coefficients[4]</span>
+                }
+            </div>
+            <div>
+                <b class="text-primary">Quartic (Factored)</b>: <i>y</i> =&nbsp;
+                @if(Model.Quartic2a == -1)
+                {
+                    <span>-</span>
+                }
+                @for(int i = 0; i < Model.Quartic2SignsAndZeroes.Length; i += 2)
+                {
+                    <span>(<i>x</i>&nbsp;@Model.Quartic2SignsAndZeroes[i]&nbsp;@Model.Quartic2SignsAndZeroes[i + 1])</span>
+                }
+            </div>
+        </div>
+        
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <div class="d-flex flex-column col-10 col-md-8">
+                <svg  version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox="-18 -18 36 36">
+                    @for(int i = -15; i < 16; i++)
+                    {
+                        <line x1="@i" y1="-15" x2="@i" y2="15" stroke="black" stroke-width="0.15" />
+                        <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
+                    }
+                    <path d="@Model.Cubic1SVGPath" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.Quartic2SVGPath" stroke="blue" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                    <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                </svg>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center mb-3 border-dark border-bottom">
+            <p class='col-10 col-md-8'>
+                Depending on the values of the zeroes of each function, it may be difficult to see the 
+                end behavior in the graph above.&nbsp;&nbsp;
+                @if(Model.Cubic1Coefficients[0] == 1)
+                {
+                    <span>
+                        Since the leading coefficient in the <b class="text-danger">cubic</b> function 
+                        is positive, as <i>x</i> &rarr; -&infin;, <i>y</i> &rarr; -&infin;.  As <i>x</i> &rarr; +
+                        &infin;, <i>y</i> &rarr; +&infin;.
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        Since the leading coefficient in the <b class="text-danger">cubic</b> function 
+                        is negative, as <i>x</i> &rarr; -&infin;, <i>y</i> &rarr; +&infin;.  As <i>x</i> &rarr; +
+                        &infin;, <i>y</i> &rarr; -&infin;.
+                    </span>
+                }
+                @if(Model.Quartic2Coefficients[0] == 1)
+                {
+                    <span>
+                        Since the leading coefficient in the <b class="text-primary">quartic</b> function 
+                        is positive, as <i>x</i> &rarr; &plusmn;&infin;, <i>y</i> &rarr; +&infin;.
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        Since the leading coefficient in the <b class="text-primary">quartic</b> function 
+                        is negative, as <i>x</i> &rarr; &plusmn;&infin;, <i>y</i> &rarr; -&infin;.
+                    </span>
+                }
+            </p>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <div class="d-flex justify-content-between align-items-center col-10">
+                <h5 id='properties'>Properties</h5>
+                <a href='#top' class='nav-link'>Back to Top</a>
+            </div>
+            <p class='col-10 col-md-8'>
+                The domain and range of all <b class="text-danger">odd-degree</b> polynomials are both (-&infin;, +&infin;).  This 
+                means that for these types of polynomials, all <i>x</i> and <i>y</i> values are possible.
+            </p>
+            <p class='col-10 col-md-8'>
+                While the domain of all <b class="text-primary">even-degree</b> polynomials is (-&infin;, +&infin;), the range  
+                of any such polynomial is always limited.  For any non-constant <b class="text-primary">even-degree</b> polynomials, 
+                if the leading coefficient is negative, the function will have an absolute maximum.  If the leading coefficient 
+                is positive, the function will have an absolute minimum.
+            </p>
+            <p class='col-10 col-md-8'>
+                All <b class="text-danger">odd-degree</b> polynomials have at least one real root/zero.
+            </p>
+            <p class='col-10 col-md-8'>
+                <b class="text-primary">Even-degree</b> polynomials do not have to have any real roots, though 
+                the one above does have at least one.
+            </p>
+        </div>
+    </div>
+</div>
+
