@@ -48,9 +48,29 @@ namespace SimpleAlgebra.Models
         public string FactLead3; //Leading string coefficient
         public string Fact3answer; //String version of answer
 
+        //Seventh practice problem - First Vertex
+        public int Vert1H; //h coefficient of first problem
+        public int Vert1K; //k coefficient of first problem
+        public int Vert1A; //a coefficient of first problem
+        public string Vert1Answer; //Stores the answer to the first problem
+
+        //Eighth practice problem - Second Vertex
+        public int Vert2H; //h coefficient of second problem
+        public int Vert2K; //k coefficient of second problem
+        public int Vert2A; //a coefficient of second problem
+        public int Vert2Answer; //Stores the answer to the second problem
+
+        //Ninth practice problem - Third Vertex
+        public int Vert3H; //h coefficient of third problem
+        public int Vert3K; //k coefficient of third problem
+        public int Vert3A; //a coefficient of third problem
+        public int Vert3AnswerA; //First root
+        public int Vert3AnswerB; //Second root
+
         //Default constructor
         public Quadratic()
         {
+            Random rand = new Random();
             //First question fields
             qSF1z1 = Calc.ReselectIfZero(12);
             qSF1z2 = Calc.ReselectIfZero(12);
@@ -170,6 +190,57 @@ namespace SimpleAlgebra.Models
                 FactLead3 = $"{Fact3a}";
             }
             Fact3answer = $"({axisOfSymmetry3},{fact3Y})|{axisOfSymmetry3},{fact3Y}";
+
+            //First vertex form fields - ask for quadrant
+            Vert1H = Calc.ReselectIfZero(9);
+            Vert1K = Calc.ReselectIfZero(9);
+            Vert1A = Calc.ReselectIfZero(5);
+            if(Vert1H > 0 && Vert1K > 0)
+            {
+                Vert1Answer = "I";
+            } 
+            else if(Vert1H > 0)
+            {
+                Vert1Answer = "IV";
+            } 
+            else if(Vert1K > 0)
+            {
+                Vert1Answer = "II";
+            }
+            else
+            {
+                Vert1Answer = "III";
+            }
+
+            //Second Vertex form fields - ask for number of x-intercepts
+            Vert2H = Calc.ReselectIfZero(9);
+            Vert2K = (int)(-10 + Math.Floor(rand.NextDouble()*21));
+            Vert2A = Calc.ReselectIfZero(5);
+            if(Vert2K == 0)
+            {
+                Vert2Answer = 1;
+            }
+            else if(Vert2A*Vert2K > 0)
+            {
+                Vert2Answer = 0;
+            }
+            else
+            {
+                Vert2Answer = 2;
+            }
+
+            //Third Vertex form fields - ask for roots
+            Vert3A = rand.NextDouble() < 0.5 ? -1 : 1;
+            Vert3H = Calc.ReselectIfZero(9);
+            Vert3K = Calc.RandomPositive(12);
+            Vert3AnswerA = Vert3H - Vert3K;
+            Vert3AnswerB = Vert3H + Vert3K;
+            Vert3K *= Vert3K;
+            if(Vert3A == 1)
+            {
+                Vert3K *= -1;
+            }
+
         }
     }
 }

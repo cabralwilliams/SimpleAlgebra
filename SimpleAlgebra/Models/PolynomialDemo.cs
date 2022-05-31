@@ -23,6 +23,15 @@ namespace SimpleAlgebra.Models
         public string[] Quartic2SignsAndZeroes;
         public string Quartic2SVGPath;
 
+        //Fields for repeated roots and flattening of function
+        public int LinearRoot3;
+        public int QuadraticRoot3;
+        public int CubicRoot3;
+        public int QuarticRoot3;
+        public int LRCo3, QDRCo3, CRCo3, QRTCo3;
+        public string LRSVG3, QDRSVG3, CRSVG3, QRTSVG3; //SVG paths for the functions
+        public int[] LinCos3, QuadCos3, CubCos3, QuartCos3; //Holds the coefficients of the polynomials
+
         //Default Constructor
         public PolynomialDemo()
         {
@@ -60,6 +69,47 @@ namespace SimpleAlgebra.Models
             }
             double[] quartic2SVG = new double[] { Quartic2Coefficients[0], Quartic2Coefficients[1], Quartic2Coefficients[2], Quartic2Coefficients[3], Quartic2Coefficients[4] };
             Quartic2SVGPath = SVG.SVGPolyPath(-15,15,0.1,quartic2SVG);
+
+            //Fields for repeated root example
+            LinearRoot3 = Calc.ReselectIfZero(10);
+            QuadraticRoot3 = Calc.ReselectIfZero(10);
+            CubicRoot3 = Calc.ReselectIfZero(10);
+            QuarticRoot3 = Calc.ReselectIfZero(10);
+            LRCo3 = Calc.ReselectIfZero(4);
+            QDRCo3 = Calc.ReselectIfZero(1);
+            CRCo3 = Calc.ReselectIfZero(1);
+            QRTCo3 = Calc.ReselectIfZero(1);
+            //Get coefficients to use in each of the function SVG drawings
+            LinCos3 = Calc.ZeroesToPolyCoefficients(new int[] { LinearRoot3 });
+            QuadCos3 = Calc.ZeroesToPolyCoefficients(new int[] { QuadraticRoot3, QuadraticRoot3 });
+            CubCos3 = Calc.ZeroesToPolyCoefficients(new int[] { CubicRoot3, CubicRoot3, CubicRoot3 });
+            QuartCos3 = Calc.ZeroesToPolyCoefficients(new int[] { QuarticRoot3, QuarticRoot3, QuarticRoot3, QuarticRoot3 });
+            for(int i = 0; i < LinCos3.Length; i++)
+            {
+                LinCos3[i] *= LRCo3;
+            }
+            for(int i = 0; i < QuadCos3.Length; i++)
+            {
+                QuadCos3[i] *= QDRCo3;
+            }
+            for(int i = 0; i < CubCos3.Length; i++)
+            {
+                CubCos3[i] *= CRCo3;
+            }
+            for(int i = 0; i < QuartCos3.Length; i++)
+            {
+                QuartCos3[i] *= QRTCo3;
+            }
+            //Transform the integer arrays into double arrays
+            double[] lc3 = new double[] { LinCos3[0], LinCos3[1] };
+            double[] qdc3 = new double[] { QuadCos3[0], QuadCos3[1], QuadCos3[2] };
+            double[] cc3 = new double[] { CubCos3[0], CubCos3[1], CubCos3[2], CubCos3[3] };
+            double[] qrc3 = new double[] { QuartCos3[0], QuartCos3[1], QuartCos3[2], QuartCos3[3], QuartCos3[4] };
+            //Create SVG path d properties
+            LRSVG3 = SVG.SVGPolyPath(-15, 15, 0.5, lc3);
+            QDRSVG3 = SVG.SVGPolyPath(-15, 15, 0.1, qdc3);
+            CRSVG3 = SVG.SVGPolyPath(-15, 15, 0.1, cc3);
+            QRTSVG3 = SVG.SVGPolyPath(-15, 15, 0.1, qrc3);
         }
     }
 }

@@ -263,6 +263,40 @@
                 <b class="text-primary">Even-degree</b> polynomials do not have to have any real roots, though 
                 the one above does have at least one.
             </p>
+            <p class='col-10 col-md-8'>
+                The <b class="text-danger">multiplicity</b> of a root is the number of times that that root appears in 
+                a given polynomial.  If the multiplicity of the root is odd, the function passes through the <i>x</i>-
+                axis at that location.  If the multiplicity of the root is even, the function instead bounces off of the 
+                <i>x</i>-axis at that location.  The higher the multiplicity of a root, the more the function flattens in 
+                the vicinity of the root.  This is evidenced by the graph below.
+            </p>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <div class="d-flex flex-column col-10 col-md-8">
+                <svg  version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox="-18 -18 36 36">
+                    @for(int i = -15; i < 16; i++)
+                    {
+                        <line x1="@i" y1="-15" x2="@i" y2="15" stroke="black" stroke-width="0.15" />
+                        <line y1="@i" x1="-15" y2="@i" x2="15" stroke="black" stroke-width="0.15" />
+                    }
+                    <path d="@Model.LRSVG3" stroke="red" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.QDRSVG3" stroke="blue" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.CRSVG3" stroke="green" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <path d="@Model.QRTSVG3" stroke="orange" stroke-width="0.25" fill="none" opacity="0.95" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                    <line y1="-15" x1="0" y2="15" x2="0" stroke="black" stroke-width="0.25" opacity="0.95" />
+                </svg>
+            </div>
+        </div>
+        <div class='d-flex flex-column align-items-center mb-3'>
+            <p class='col-10 col-md-8'>
+                In the graph above, the <b class="text-danger">linear</b> function has a single root at 
+                <i>x</i> = @Model.LinearRoot3.  The <b class="text-primary">quadratic</b> function has a 
+                double root at <i>x</i> = @Model.QuadraticRoot3.  The <b class="text-success">cubic</b> function 
+                has a triple root at <i>x</i> = @Model.CubicRoot3.  Finally, the <b class="text-warning">quartic</b> function 
+                has a quadruple root at <i>x</i> = @Model.QuarticRoot3.  Notice the increased flattening that comes 
+                with increased function multiplicity.
+            </p>
         </div>
     </div>
 </div>

@@ -21,5 +21,10 @@ namespace SimpleAlgebra.Controllers
         {
             return View(quadratic1);
         }
+
+        public IActionResult Vertex()
+        {
+            return View(quadratic1);
+        }
     }
 }
