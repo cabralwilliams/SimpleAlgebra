@@ -6,6 +6,8 @@ namespace SimpleAlgebra.Controllers
     public class LinearController : Controller
     {
         StandardLine standardLine = new StandardLine();
+        LinearStandardWord linearStandardWord = new LinearStandardWord();
+
         public IActionResult Index()
         {
             return View();
@@ -23,6 +25,11 @@ namespace SimpleAlgebra.Controllers
             Console.WriteLine(toSend.messageLS1);
             Console.WriteLine(toSend.messageLS2);
             return View(toSend);
+        }
+
+        public IActionResult WordProblems()
+        {
+            return View(linearStandardWord);
         }
 
         [HttpPost]
